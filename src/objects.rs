@@ -33,7 +33,7 @@ impl<T: Type> Type for Arc<T> {
 }
 
 /// A calender describes on which days the vehicle runs. See <https://gtfs.org/reference/static/#calendartxt>
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Calendar {
     /// Unique technical identifier (not for the traveller) of this calendar
     #[serde(rename = "service_id")]
@@ -128,7 +128,7 @@ impl Calendar {
 }
 
 /// Defines a specific date that can be added or removed from a [Calendar]. See <https://gtfs.org/reference/static/#calendar_datestxt>
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct CalendarDate {
     /// Identifier of the service that is modified at this date
     pub service_id: String,
@@ -308,7 +308,7 @@ impl StopTime {
 }
 
 /// A route is a commercial line (there can be various stop sequences for a same line). See <https://gtfs.org/reference/static/#routestxt>
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct Route {
     /// Unique technical (not for the traveller) identifier for the route
     #[serde(rename = "route_id")]
@@ -480,7 +480,7 @@ impl fmt::Display for Trip {
 }
 
 /// General informations about the agency running the network. See <https://gtfs.org/reference/static/#agencytxt>
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct Agency {
     /// Unique technical (not for the traveller) identifier for the Agency
     #[serde(rename = "agency_id")]
@@ -530,7 +530,7 @@ impl fmt::Display for Agency {
 }
 
 /// A single geographical point decribing the shape of a [Trip]. See <https://gtfs.org/reference/static/#shapestxt>
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct Shape {
     /// Unique technical (not for the traveller) identifier for the Shape
     #[serde(rename = "shape_id")]
@@ -562,7 +562,7 @@ impl Id for Shape {
 }
 
 /// Defines one possible fare. See <https://gtfs.org/reference/static/#fare_attributestxt>
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct FareAttribute {
     /// Unique technical (not for the traveller) identifier for the FareAttribute
     #[serde(rename = "fare_id")]
@@ -678,7 +678,7 @@ impl From<RawTransfer> for StopTransfer {
 }
 
 /// Meta-data about the feed. See <https://gtfs.org/reference/static/#feed_infotxt>
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct FeedInfo {
     /// Full name of the organization that publishes the dataset.
     #[serde(rename = "feed_publisher_name")]
