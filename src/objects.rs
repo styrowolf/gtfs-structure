@@ -211,6 +211,20 @@ impl fmt::Display for Stop {
     }
 }
 
+impl PartialEq for Stop {
+    fn eq(&self, other: &Self) -> bool {
+        self.id == other.id
+    }
+}
+
+impl Eq for Stop {}
+
+impl std::hash::Hash for Stop {
+    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
+        self.id.hash(state);
+    }
+}
+
 /// A [StopTime] where the relations with [Trip] and [Stop] have not been tested
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct RawStopTime {
