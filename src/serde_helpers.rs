@@ -191,7 +191,11 @@ pub fn serialize_bool<S>(value: &bool, serializer: S) -> Result<S::Ok, S::Error>
 where
     S: Serializer,
 {
-    serializer.serialize_u8(if *value { 1 } else { 0 })
+    serializer.serialize_str(match value {
+        false => "0",
+        true => "1"
+    })
+    //serializer.serialize_u8(if *value { 1 } else { 0 })
 }
 
 #[test]
